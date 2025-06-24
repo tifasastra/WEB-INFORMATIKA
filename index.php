@@ -4,17 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Informatika</title>
+    <link rel="stylesheet" href="style.css">
 
-    <style>
-        body{
-            background-color:white
-        }
-        h1 {
-            font-family:'Times New Roman', Times, serif;
-            text-align: center;
-        }
-    </style>
 </head>
+
 <body>
     <h1 align="center" > WEB INFORMATIKA </h1>
     <hr width="50%" align="center" size="5px" color="darkgrey">
