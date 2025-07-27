@@ -14,9 +14,10 @@ $rows = tampildata($query);
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
+
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         nav ul {
             list-style-type: none;
@@ -40,7 +41,7 @@ $rows = tampildata($query);
         <ul>
             <li><a href="home.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="service.html">Services</a></li>
+            <li><a href="service.html">Service</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="login.html">Login</a></li>
             <li><a href="datamahasiswa.php">Data</a></li>

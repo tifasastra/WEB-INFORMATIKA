@@ -58,8 +58,10 @@ if (isset($_POST['submit'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tambah Data</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
 </head>
-<body style="font-family: Arial, sans-serif;">
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;>
 
 <div class="container mt-5">
   <div class="row justify-content-center">

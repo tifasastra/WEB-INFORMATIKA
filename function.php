@@ -6,6 +6,7 @@ if (!$koneksi) {
     die('Koneksi Gagal: ' . mysqli_connect_error());
 }
 
+// Fungsi tampil data
 if (!function_exists('tampildata')) {
     function tampildata($query)
     {
@@ -21,6 +22,7 @@ if (!function_exists('tampildata')) {
     }
 }
 
+// Fungsi tambah data
 if (!function_exists('tambahdata')) {
     function tambahdata($data, $file)
     {
@@ -49,6 +51,7 @@ if (!function_exists('tambahdata')) {
     }
 }
 
+// Fungsi hapus data
 if (!function_exists('hapusdata')) {
     function hapusdata($id)
     {
@@ -60,6 +63,7 @@ if (!function_exists('hapusdata')) {
     }
 }
 
+// Fungsi ubah data
 if (!function_exists('ubahdata')) {
     function ubahdata($data, $file, $id)
     {
@@ -102,3 +106,42 @@ if (!function_exists('ubahdata')) {
         return 0;
     }
 }
+
+// Fungsi register
+if (!function_exists('register')) {
+    function register($data)
+    {
+        global $koneksi;
+
+        $username = trim($data["username"]);
+        $password1 = trim($data["password1"]);
+        $password2 = trim($data["password2"]);
+
+        $queryusername = "SELECT id FROM user WHERE username = '$username'";
+        $username_check = mysqli_query($koneksi, $queryusername);
+
+        if (mysqli_num_rows($username_check) > 0) {
+            return "Username sudah terdaftar!";
+        }
+
+        if (!preg_match('/^[a-zA-Z0-9._-]+$/', $username)) {
+            return "Username tidak valid!";
+        }
+
+        if ($password1 !== $password2) {
+            return "Konfirmasi password salah!";
+        }
+
+        $hash_password = password_hash($password1, PASSWORD_DEFAULT);
+
+        $query_insert = "INSERT INTO user VALUES ('', '$username', '$hash_password')";
+
+        if (mysqli_query($koneksi, $query_insert)) {
+            return "Register berhasil!";
+        } else {
+            return "Gagal: " . mysqli_error($koneksi);
+        }
+    }
+}
+
+?>

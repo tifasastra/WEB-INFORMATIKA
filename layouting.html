@@ -1,28 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rell="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LAYOUT</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LAYOUT</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Calibri, sans-serif;
+    }
+    .area {
+      background-color: #ffffff;
+      border: 2px solid #dee2e6;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    .teras { background-color: #e9f7ef; }
+    .kolam { background-color: #d0ebff; }
+    .taman { background-color: #d4edda; }
+    .garasi { background-color: #f8d7da; }
+    .rumah { background-color: #fff3cd; }
+    .dapur { background-color: #e2e3e5; }
+  </style>
 </head>
+
 <body>
-    <div class="teras">
-        <div class="kolam">
+
+  <div class="container py-5">
+
+    <h1 class="text-center mb-4">Denah Rumah Sederhana</h1>
+
+    <!-- Bagian Teras, Kolam, Taman, Garasi -->
+    <div class="row mb-4">
+      <div class="col-md-3 mb-3">
+        <div class="area teras">
+          <h5>Teras</h5>
         </div>
-        <div class="taman">
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="area kolam">
+          <h5>Kolam</h5>
         </div>
-        <div class="garasi">
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="area taman">
+          <h5>Taman</h5>
         </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="area garasi">
+          <h5>Garasi</h5>
+        </div>
+      </div>
     </div>
 
-    <div class="rumah">
-        <h1>Rumah</h1>
+    <!-- Bagian Rumah -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="area rumah">
+          <h3>Rumah Utama</h3>
+        </div>
+      </div>
     </div>
 
-    <div class="dapur">
-        <h1>Dapur</h1>
+    <!-- Bagian Dapur -->
+    <div class="row">
+      <div class="col-12">
+        <div class="area dapur">
+          <h3>Dapur</h3>
+        </div>
+      </div>
     </div>
 
+  </div>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

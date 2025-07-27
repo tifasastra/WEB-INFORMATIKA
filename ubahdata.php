@@ -2,12 +2,41 @@
 
 require 'function.php';
 
+// ✅ Tambahkan pengecekan ID
+if (!isset($_GET["id"]) || empty($_GET["id"])) {
+    echo "<script>
+            alert('ID tidak ditemukan!');
+            document.location.href = 'datamahasiswa.php';
+          </script>";
+    exit;
+}
+
 $id = $_GET["id"];
 
+// ✅ Query untuk ambil data mahasiswa
 $query = "SELECT * FROM mahasiswa WHERE id = $id";
 $result = mysqli_query($koneksi, $query);
+
+// ✅ Tambahkan pengecekan hasil query
+if (!$result) {
+    echo "<script>
+            alert('Data tidak ditemukan di database!');
+            document.location.href = 'datamahasiswa.php';
+          </script>";
+    exit;
+}
+
 $mhs = mysqli_fetch_assoc($result);
 
+if (!$mhs) {
+    echo "<script>
+            alert('Data dengan ID tersebut tidak ada!');
+            document.location.href = 'datamahasiswa.php';
+          </script>";
+    exit;
+}
+
+// ✅ Jika tombol submit ditekan
 if (isset($_POST['submit'])) {
     if (ubahdata($_POST, $_FILES, $id) > 0) {
         echo "
@@ -26,7 +55,7 @@ if (isset($_POST['submit'])) {
     }
 }
 
-// Fungsi ubah data TANPA htmlspecialchars
+// ✅ Fungsi ubah data tetap sama
 function ubahdata($data, $file, $id)
 {
     global $koneksi;
@@ -65,7 +94,7 @@ function ubahdata($data, $file, $id)
         return mysqli_affected_rows($koneksi);
     }
 
-    return 0; // Jika gagal upload
+    return 0; // Gagal upload file
 }
 
 ?>
@@ -73,44 +102,44 @@ function ubahdata($data, $file, $id)
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Data</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="background-color: #f2f2f2; font-family: Arial, sans-serif;">
+<body style="background-color: #f2f2f2; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
 
 <div class="card" style="
-    max-width: 500px; 
-    margin: 50px auto; 
-    padding: 30px; 
-    background: #fff; 
-    border-radius: 10px; 
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 ">
     <div class="card-body">
 
-        <h1 class="mb-4" style="text-align: center; color: #333;">Edit Data Mahasiswa</h1>
+        <h1 class="mb-4 text-center" style="color: #333;">Edit Data Mahasiswa</h1>
+
         <form action="" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="name" class="form-label">Nama:</label>
-                <input type="text" name="nama" id="name" class="form-control" required value="<?= $mhs['nama']; ?>">
+                <input type="text" name="nama" id="name" class="form-control" required value="<?= htmlspecialchars($mhs['nama']); ?>">
             </div>
 
             <div class="mb-3">
                 <label for="nim" class="form-label">NIM:</label>
-                <input type="text" name="nim" id="nim" class="form-control" required value="<?= $mhs['nim']; ?>">
+                <input type="text" name="nim" id="nim" class="form-control" required value="<?= htmlspecialchars($mhs['nim']); ?>">
             </div>
 
             <div class="mb-3">
                 <label for="jurusan" class="form-label">Jurusan:</label>
-                <input type="text" name="jurusan" id="jurusan" class="form-control" required value="<?= $mhs['jurusan']; ?>">
+                <input type="text" name="jurusan" id="jurusan" class="form-control" required value="<?= htmlspecialchars($mhs['jurusan']); ?>">
             </div>
 
             <div class="mb-3">
                 <label for="alamat" class="form-label">Alamat:</label>
-                <input type="text" name="alamat" id="alamat" class="form-control" required value="<?= $mhs['alamat']; ?>">
+                <input type="text" name="alamat" id="alamat" class="form-control" required value="<?= htmlspecialchars($mhs['alamat']); ?>">
             </div>
 
             <div class="mb-3">
